@@ -14,7 +14,7 @@ public class word {
         decrypt();
     }
     public void encrypt(){
-
+      if()
     }
     public void decrypt(){
 
