@@ -1,24 +1,65 @@
 package com.company;
-import java.io.*
-        import java.util.*
+
 /**
- * Created by gr236 on 10/9/18.
+ * Created by bb222 on 10/15/18.
  */
-public class word {
-    public String word;
-    public double random;
-    public word(String w, double r) {
-        word = w;
-        random = r;
-        encrypt();
-        decrypt();
+class encryption {
+    String userPhrase = "";
+    String userPhraseEncrypted = "";
+    int decryptKey = -1;
+
+
+
+    public encryption(String x){
+        userPhrase = x;
+
+
+        decryptKey = (int) (Math.random() * 10000);
+        while ((decryptKey % 10 == 0)) {
+            decryptKey = (int) (Math.random() * 10000);
+        }
+        //forces key to not be something that would not change the encrypted message to decrypted
     }
-    public void encrypt(){
-      if()
-    }
-    public void decrypt(){
+
+
+    private String encryptMethod(){
+
+
+
+        for(int i = 0; i < userPhrase.length(); i++){
+            char currentChar = userPhrase.charAt(i);
+            int ASCIIchar = (int) currentChar;
+            userPhraseEncrypted += (char)(ASCIIchar + (decryptKey % 10));
+        }
+
+        return userPhraseEncrypted;
+
 
     }
+
+    public String getEncryptedPhrase(){
+
+        return "Your encrypted phrase is: " + encryptMethod() + "\nYour decrypt key for this message is: " + decryptKey;
     }
+
+
+    private String decryptMethod(String userPhrase, int key){
+        String userPhraseDecrypted = "";
+
+        for(int i = 0; i < userPhrase.length(); i++){
+            char currentChar = userPhrase.charAt(i);
+            int ASCIIchar = (int) currentChar;
+            userPhraseDecrypted += (char)(ASCIIchar - (key % 10));
+        }
+
+        return userPhraseDecrypted;
+    }
+
+    public String getDecryptedPhrase(String userPhrase, int key){
+        return "Your decrypted phrase is: " + decryptMethod(userPhrase, key);
+    }
+
+
+}
 
 
